@@ -1,15 +1,16 @@
 # CV_data_access_workshop
 ## Code for R exercises
 
-If you have a GitHub account:
+### __If you have a GitHub account:__
 
 + Fork the repo
++ Clone the forked repo to a local drive
 + Open the .Rproj file on your machine
 + Navigate to the script folder and open the either the 'animation_code.R' file or the 'DetectionPlotCode.R' file
 
 
 
-If you don't have a github account:
+### __If you don't have a github account:__
 
 + __Open RStudio__
 + Click on 'File' ==> Click "New Project" ==> Click 'New Directory' ==> Click 'New Project'
