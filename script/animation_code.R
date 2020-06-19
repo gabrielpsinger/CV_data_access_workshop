@@ -91,27 +91,6 @@ CA<-c(geom_polygon(aes(long,lat,group=group),
                    colour= "#090D2A",#090D2A", 
                    fill="#090D2A", alpha=0.8, data=CA_map))
 
-# GS46638 <- GS46638 %>% 
-#   mutate(dt = as.character(DetectDate), id = 1:n())
-# 
-# 
-# plot <- ggplot() +
-#   CA +
-#   geom_point(data = recs_short, aes(x = lon, y = lat), color = "white") + 
-#   geom_point(data = GS46638, aes(x = Lon, y = Lat), color = "red", size = 3.5) + 
-#   annotate("text", label = paste("TagID:",GS46638$TagID[1]), color =  "white", x = -125, y = 37.1, size = 6) +
-#   theme(panel.background =  element_rect(fill='gray40',colour='gray40'),
-#         panel.grid.major = element_blank(), 
-#         panel.grid.minor = element_blank()) + 
-#   coord_cartesian(xlim = c(-125.5, -119), ylim = c(37,41)) +
-#   theme(axis.line=element_blank(),axis.text.x=element_blank(),
-#         axis.text.y=element_blank(),axis.ticks=element_blank(),
-#         axis.title.x=element_blank(),
-#         axis.title.y=element_blank()) + 
-#   labs(title = '{GS46638$DetectionLocation[as.integer(closest_state)]}', 
-#        subtitle = '{GS46638$DetectDate[as.integer(closest_state)]}') + 
-#   transition_states(id, transition_length = .1, state_length = 1)
-
 
 plot <- ggplot() +
   CA +                                                                               # ad CA outline to plot
@@ -142,7 +121,7 @@ anim_save("fig_output/GS46638.gif", plot)
 
 # optional: save as mp4 to pause and click through frame by frame
 b <- animate(plot, renderer = av_renderer())
-anim_save("fig_output/GS4638.mp4", b)
+anim_save("fig_output/GS46638.mp4", b)
 
 
 
@@ -158,7 +137,7 @@ rescue_year <- dets %>%
 plot2 <- ggplot() +
   CA +                                                                               # ad CA outline to plot
   geom_point(data = recs_short, aes(x = lon, y = lat), color = "white") +            # add receiver array to plot
-  geom_point(data = post_rescue, aes(x = Lon, y = Lat, color = factor(TagID)),
+  geom_point(data = rescue_year, aes(x = Lon, y = Lat, color = factor(TagID)),
              size = 3.5, show.legend = F) + 
   #annotate("text", label = paste("TagID:",GS46638$TagID[1]),                         # add text label to plot
    #        color =  "white", x = -125, y = 37.1, size = 6) +
