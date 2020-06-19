@@ -1,4 +1,7 @@
+\begin{center}
 # CV_data_access_workshop
+\end{center}
+
 ## Code for R exercises
 
 ### __If you have a GitHub account:__
@@ -17,6 +20,8 @@
   - Name the Directory ==> Optional: Check the 'Open in New Session' Box ==> Click 'Create Project'
 + In the 'Files' pane (usually lower right panel) click on the 'New Folder' Button and add a 'script' folder
 + Click the 'Add' Button (usually upper left), and add a new script file
+
+
 
 + __On the GitHub Webpage__ 
 + Click on the 'script' folder
