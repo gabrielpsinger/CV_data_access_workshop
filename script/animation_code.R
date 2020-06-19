@@ -153,5 +153,5 @@ plot2 <- ggplot() +
   transition_time(DetectDate) + 
   labs(title = "Date: {frame_time}")
 
-# animate plot
 animate(plot2, fps=2, renderer = gifski_renderer(loop = F))
+# animate plot
