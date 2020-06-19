@@ -1,6 +1,4 @@
-\begin{center}
 # CV_data_access_workshop
-\end{center}
 
 ## Code for R exercises
 
