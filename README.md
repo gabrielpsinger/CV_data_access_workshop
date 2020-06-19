@@ -1,5 +1,4 @@
-# CV_data_access_workshop
-
+# CV Data Access Workshop  
 ## Code for R exercises
 
 ### __If you have a GitHub account:__
@@ -31,3 +30,6 @@
 + Click ctrl/cmd + V to paste it all in your newly created script file
 
 
+
+
+  
