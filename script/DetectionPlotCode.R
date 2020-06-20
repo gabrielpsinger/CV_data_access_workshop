@@ -43,20 +43,13 @@ unzip(tempdl, "2019_UCD_SJR.csv", exdir = "data")
 # read csv into work space (also reducing the # of TagIDs read to simplify)
 dets <- read_csv('data/2019_UCD_SJR.csv')
 
-
-
-# 1. prep data ------------------------------------------------------------
-
-dets$DetectPotential <-ifelse(dets$RiverKm > 211, 350, 700) # 2 release groups means not all receivers had opportunity to capture all 700 fish
-
-
-# 2. choose whether you want to look at survival to a specific rec --------
+# 1. choose whether you want to look at survival to a specific rec --------
 
 loc <- dets$General_Location # general locations
 #loc <- dets$SN # specific receiver ID
 
 
-# 3. get first detction from tags at each location ------------------------
+# 2. get first detction from tags at each location ------------------------
 
 visits<- dets %>% 
   mutate(combo = (paste0(TagID,"_", loc))) %>% 
@@ -69,7 +62,7 @@ visits_first <- visits %>%
   arrange(TagID, DetectDate)
 
 
-# 4. determine which receivers to plot ------------------------------------
+# 3. determine which receivers to plot ------------------------------------
 
 # Look at options:
 unique(visits_first$General_Location) # General locations
@@ -79,36 +72,39 @@ unique(visits_first$General_Location) # General locations
 gen_rec_list <- c("Blw_Release1", "Mossdale", "JP_US", "GoldenGateW") # list the receivers that you want to plot, these are just examples
 
 
-# 5. make data file -------------------------------------------------------
-
+# 4. make data file -------------------------------------------------------
 plot_df <- NULL
 
 for (rec in gen_rec_list) {
   print(rec)
-  #rec_df <- subset(visits_first, grepl(rec, visits_first$General_Location)) 
   rec_df <- subset(visits_first, visits_first$General_Location == rec) %>% 
     mutate(Date = ymd(format(as.Date(DetectDate), '%Y-%m-%d'))) %>% 
     arrange(TagID, Date)
   
   dets.by.day <- rec_df %>% 
-    group_by(Date, General_Location, DetectPotential) %>% 
-    tally() %>% 
-    mutate(prop.det = n/DetectPotential) %>% 
+    group_by(Date, General_Location) %>% 
+    tally()
+  
+  dets.by.day$total_detected <- sum(dets.by.day$n)
+  
+  prop.detected<- dets.by.day %>% 
+    mutate(prop.det = n/total_detected) %>% 
     transform(Percent = ave(prop.det, FUN = cumsum)) %>% 
     mutate(Percent = Percent*100)
-  plot_df <- rbind(plot_df, data.frame(dets.by.day))
+  prop.detected$labels <- prop.detected$Date[nrow(prop.detected)]
+  plot_df <- rbind(plot_df, data.frame(prop.detected))
 }
 
-
-# 6. plot -----------------------------------------------------------------
+# 5. plot -----------------------------------------------------------------
 
 ggplot(data = plot_df) +
   geom_line(aes(x = Date, y = Percent, color = General_Location), size = 1.1) +
   scale_color_fish_d(option = "Oncorhynchus_tshawytscha") +
-  ylim(0, 100)+
+  ylim(0, 105)+
   ylab("% Detected (Cumulative)")+
   xlab("Date")+
   ggtitle("Cumulative Detections per Location")+
+  annotate("text", x = unique(plot_df$labels), y = 105 , label = paste0("n = ", unique(plot_df$total_detected)), size = 3.5)+
   theme_bw() +
   theme(text = element_text(size = 16))
 
