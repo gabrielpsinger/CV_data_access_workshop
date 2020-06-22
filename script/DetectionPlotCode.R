@@ -27,7 +27,8 @@
 # }
 
 # setup moved to "script/utils.R"
-
+source("script/utils.R")
+check_and_install_packages()
 # get data ----------------------------------------------------------------
 
 # # set up temporary file
@@ -46,7 +47,9 @@ download_salmon_data()
 
 # read csv into work space (also reducing the # of TagIDs read to simplify)
 dets <- read_csv('data/2019_UCD_SJR.csv')
-
+dets <- read_csv_chunked('data/2019_UCD_SJR.csv', 
+                         callback = DataFrameCallback$new(function(x, pos) subset(x, RiverKm == 270.52 | RiverKm == 163.12 | RiverKm < 94)),  
+                         progress = T)
 # 1. choose whether you want to look at survival to a specific rec --------
 
 loc <- dets$General_Location # general locations
