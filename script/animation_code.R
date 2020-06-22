@@ -2,35 +2,41 @@
 
 # setup -------------------------------------------------------------------
 # make list of required packages
-list.of.packages <- c("tidyverse",
-                      "lubridate",
-                      "maps", 
-                      "rgeos",
-                      "maptools",
-                      "ggmap",
-                      "gganimate", 
-                      "sf", 
-                      "rgdal"
-)
+# list.of.packages <- c("tidyverse",
+#                       "lubridate",
+#                       "maps", 
+#                       "rgeos",
+#                       "maptools",
+#                       "ggmap",
+#                       "gganimate", 
+#                       "sf", 
+#                       "rgdal", 
+#                       "gifski", 
+#                       "fishualize"
+#                       
+# )
+# 
+# # make list of packages that are required, but not already downloaded
+# new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[, "Package"])]
+# 
+# # download packages that are not already present in the library
+# if(length(new.packages))
+#   install.packages(new.packages)
+# 
+# # load packages
+# packages_load <- lapply(list.of.packages, require, character.only = T)
+# 
+# # print warning if there is a problem with installing/loading some of packages
+# if(any(as.numeric(packages_load)==0)){
+#   warning(paste("Package/s: ", paste(list.of.packages[packages_load != T], sep = ","), "not loaded!"))
+# }else{
+#   print("All packages were successfully loaded.")
+# }
 
-# make list of packages that are required, but not already downloaded
-new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[, "Package"])]
+# Setup code moved to utils.R
 
-# download packages that are not already present in the library
-if(length(new.packages))
-  install.packages(new.packages)
-
-# load packages
-packages_load <- lapply(list.of.packages, require, character.only = T)
-
-# print warning if there is a problem with installing/loading some of packages
-if(any(as.numeric(packages_load)==0)){
-  warning(paste("Package/s: ", paste(list.of.packages[packages_load != T], sep = ","), "not loaded!"))
-}else{
-  print("All packages were successfully loaded.")
-}
-
-
+source("script/utils.R")
+check_and_install_packages()
 # get data ----------------------------------------------------------------
 # set up temporary file
 tempdl <- tempfile()
@@ -119,9 +125,9 @@ dir.create("fig_output")
 # save animation to directory
 anim_save("fig_output/GS46638.gif", plot)
 
-# optional: save as mp4 to pause and click through frame by frame
-b <- animate(plot, renderer = av_renderer())
-anim_save("fig_output/GS46638.mp4", b)
+# # optional: save as mp4 to pause and click through frame by frame
+# b <- animate(plot, renderer = av_renderer())
+# anim_save("fig_output/GS46638.mp4", b)
 
 
 
@@ -153,5 +159,6 @@ plot2 <- ggplot() +
   transition_time(DetectDate) + 
   labs(title = "Date: {frame_time}")
 
-animate(plot2, fps=2, renderer = gifski_renderer(loop = F))
 # animate plot
+animate(plot2, fps=2, renderer = gifski_renderer(loop = F))
+
