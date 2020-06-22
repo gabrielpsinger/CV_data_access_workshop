@@ -1,52 +1,12 @@
 # Plotting cumulative survival to a receiver location using BARD data
 
-# set up ------------------------------------------------------------------
 
-# # make list of required packages
-# list.of.packages <- c("tidyverse",
-#                       "lubridate",
-#                       "ggplot2", 
-#                       "fishualize"
-# )
-# 
-# # make list of packages that are required, but not already downloaded
-# new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[, "Package"])]
-# 
-# # download packages that are not already present in the library
-# if(length(new.packages))
-#   install.packages(new.packages)
-# 
-# # load packages
-# packages_load <- lapply(list.of.packages, require, character.only = T)
-# 
-# # print warning if there is a problem with installing/loading some of packages
-# if(any(as.numeric(packages_load)==0)){
-#   warning(paste("Package/s: ", paste(list.of.packages[packages_load != T], sep = ","), "not loaded!"))
-# }else{
-#   print("All packages were successfully loaded.")
-# }
-
-# setup moved to "script/utils.R"
 source("script/utils.R")
 check_and_install_packages()
-# get data ----------------------------------------------------------------
 
-# # set up temporary file
-# tempdl <- tempfile()
-# 
-# # download zipped data file from BARD website
-# download.file('http://cftc.metro.ucdavis.edu/biotelemetry-autonomous-real-time-database/resources/csvs/2019_UCD_SJR.zip', 
-#               tempdl, 
-#               mode = 'wb')
-# 
-# # unzip into data folder
-# unzip(tempdl, "2019_UCD_SJR.csv", exdir = "data")
-
-# data download condensed to function in "script/utils.R
 download_salmon_data()
 
 # read csv into work space (also reducing the # of TagIDs read to simplify)
-dets <- read_csv('data/2019_UCD_SJR.csv')
 dets <- read_csv_chunked('data/2019_UCD_SJR.csv', 
                          callback = DataFrameCallback$new(function(x, pos) subset(x, RiverKm == 270.52 | RiverKm == 163.12 | RiverKm < 94)),  
                          progress = T)

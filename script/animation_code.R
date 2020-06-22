@@ -1,42 +1,9 @@
 # Thu Jun 18 10:57:04 2020 ------------------------------
 
-# setup -------------------------------------------------------------------
-# make list of required packages
-# list.of.packages <- c("tidyverse",
-#                       "lubridate",
-#                       "maps", 
-#                       "rgeos",
-#                       "maptools",
-#                       "ggmap",
-#                       "gganimate", 
-#                       "sf", 
-#                       "rgdal", 
-#                       "gifski", 
-#                       "fishualize"
-#                       
-# )
-# 
-# # make list of packages that are required, but not already downloaded
-# new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[, "Package"])]
-# 
-# # download packages that are not already present in the library
-# if(length(new.packages))
-#   install.packages(new.packages)
-# 
-# # load packages
-# packages_load <- lapply(list.of.packages, require, character.only = T)
-# 
-# # print warning if there is a problem with installing/loading some of packages
-# if(any(as.numeric(packages_load)==0)){
-#   warning(paste("Package/s: ", paste(list.of.packages[packages_load != T], sep = ","), "not loaded!"))
-# }else{
-#   print("All packages were successfully loaded.")
-# }
-
-# Setup code moved to utils.R
-
 source("script/utils.R")
 check_and_install_packages()
+
+
 # get data ----------------------------------------------------------------
 # set up temporary file
 tempdl <- tempfile()
