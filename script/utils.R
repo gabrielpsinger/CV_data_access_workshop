@@ -98,37 +98,37 @@ rsn <- function(x){rowSums(is.na(x))}
 
 # old plotting code -------------------------------------------------------
 
-plot <- ggplot() +
-  CA +                                                                               # ad CA outline to plot
-  geom_point(data = recs_short,                                                      #  add receiver array to plot
-             aes(x = lon, y = lat), 
-             color = "white") +           
-  geom_point(data = GS46638,
-             aes(x = Lon, y = Lat),
-             color = "red",
-             size = 3.5) +
-  annotate(                                                                         # Add text label for TagID
-    "text",
-    label = paste("TagID:", GS46638$TagID[1]),
-    color =  "white",
-    x = -125,
-    y = 37.1,
-    size = 6
-  ) +
-  theme(
-    panel.background =  element_rect(fill = 'gray40', colour = 'gray40'),
-    panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank()
-  ) +
-  coord_cartesian(xlim = c(-125.5,-119), ylim = c(37, 41)) +
-  theme(
-    axis.line = element_blank(),
-    axis.text.x = element_blank(),
-    axis.text.y = element_blank(),
-    axis.ticks = element_blank(),
-    axis.title.x = element_blank(),
-    axis.title.y = element_blank()
-  ) +
-  transition_manual(frames = DetectDate) +
-  labs(title = 'Location: {GS46638$DetectionLocation[current_frame]}',
-       subtitle = 'Date: {current_frame}')
+# plot <- ggplot() +
+#   CA +                                                                               # ad CA outline to plot
+#   geom_point(data = recs_short,                                                      #  add receiver array to plot
+#              aes(x = lon, y = lat), 
+#              color = "white") +           
+#   geom_point(data = GS46638,
+#              aes(x = Lon, y = Lat),
+#              color = "red",
+#              size = 3.5) +
+#   annotate(                                                                         # Add text label for TagID
+#     "text",
+#     label = paste("TagID:", GS46638$TagID[1]),
+#     color =  "white",
+#     x = -125,
+#     y = 37.1,
+#     size = 6
+#   ) +
+#   theme(
+#     panel.background =  element_rect(fill = 'gray40', colour = 'gray40'),
+#     panel.grid.major = element_blank(),
+#     panel.grid.minor = element_blank()
+#   ) +
+#   coord_cartesian(xlim = c(-125.5,-119), ylim = c(37, 41)) +
+#   theme(
+#     axis.line = element_blank(),
+#     axis.text.x = element_blank(),
+#     axis.text.y = element_blank(),
+#     axis.ticks = element_blank(),
+#     axis.title.x = element_blank(),
+#     axis.title.y = element_blank()
+#   ) +
+#   transition_manual(frames = DetectDate) +
+#   labs(title = 'Location: {GS46638$DetectionLocation[current_frame]}',
+#        subtitle = 'Date: {current_frame}')
