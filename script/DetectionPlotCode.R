@@ -34,7 +34,7 @@ loc <- dets$General_Location # general locations
 #loc <- dets$SN # specific receiver ID
 
 
-# 2. get first detction from tags at each location ------------------------
+# 2. get first detection from tags at each location ------------------------
 
 visits <- dets %>%
   mutate(combo = (paste0(TagID, "_", loc))) %>%
