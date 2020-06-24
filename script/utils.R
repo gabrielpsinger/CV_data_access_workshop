@@ -18,7 +18,9 @@ check_and_install_packages = function() {
                         "sf", 
                         "rgdal", 
                         "gifski", 
-                        "fishualize")
+                        "fishualize", 
+                        "scales", 
+                        "rvest")
  
 
 
@@ -94,7 +96,31 @@ rsn <- function(x){rowSums(is.na(x))}
 
 
 
+# scrape CDFW salvage site ------------------------------------------------
+scrape_CDFW_salvage = function(){
+url <- "https://apps.wildlife.ca.gov/Salvage/Project/DailySummary?EndDate=Sat%20Oct%2015%202016&sortOrder="
+html <- read_html(url)
+salvage <- html_nodes(html, "td")
 
+text <- html_text(salvage, trim = T)
+
+acre_ft <- as.data.frame(matrix(text[1:6], nrow = 2, byrow = T))
+
+colnames(acre_ft) <- as.character(unlist(acre_ft[1,]))
+acre_ft = acre_ft[-1, ]
+
+
+
+
+species <- as.data.frame(matrix(text[7:30], ncol= 3, byrow = T))
+colnames(species) <- as.character(unlist(species[1,]))
+species = species[-1, ]
+
+sal_list <- list(acre_ft, species)
+
+return(sal_list)
+
+}
 
 # old plotting code -------------------------------------------------------
 
