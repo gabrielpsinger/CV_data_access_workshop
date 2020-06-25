@@ -13,9 +13,11 @@ dir.create("data", showWarnings = F)
 
 # direct download by receiver and time ------------------------------------
 
-download.file(url = "http://cftc.metro.ucdavis.edu/biotelemetry-autonomous-real-time-database/memo/DLDetLoxMetaCSV/2019-06-24%2010:15:33/2020-06-24%2010:15:33/total/null/SR_ButteBr,SR_BlwIrvineFinch/", destfile = "data/test2.csv")
+download.file(url = "http://cftc.metro.ucdavis.edu/biotelemetry-autonomous-real-time-database/memo/DLDetLoxMetaCSV/2019-06-24%2010:15:33/2020-06-24%2010:15:33/total/null/SR_ButteBr,SR_BlwIrvineFinch/", 
+              destfile = "data/upper_river_dets.csv")
 
-download.file(url =  "http://cftc.metro.ucdavis.edu/biotelemetry-autonomous-real-time-database/memo/DLDetLoxMetaCSV/2011-06-24%2010:15:33/2011-09-24%2010:15:33/total/null/GG4,GG5/", destfile = "data/GG_2011.csv")
+download.file(url =  "http://cftc.metro.ucdavis.edu/biotelemetry-autonomous-real-time-database/memo/DLDetLoxMetaCSV/2011-06-24%2010:15:33/2011-09-24%2010:15:33/total/null/GG4,GG5/", 
+              destfile = "data/GG_2011.csv")
 
 
 
@@ -43,7 +45,7 @@ ggplot(dat) +
 
 
 
-# check the salvage report on the date that the GS disappears
+# check the salvage report on the date that the GS disappears: 2016-10-15
 scrape_CDFW_salvage()
 
 # download and save summary by tag ID -------------------------------------
