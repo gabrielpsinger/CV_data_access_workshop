@@ -68,11 +68,11 @@ CA <- c(
 
 
 plot <- ggplot() +
-  CA +                                                                               # ad CA outline to plot
-  geom_point(data = recs_short,                                                      #  add receiver array to plot
+  CA +                                                                               # add CA outline to plot
+  geom_point(data = recs_short,                                                      # add receiver array to plot
              aes(x = lon, y = lat), 
              color = "white") +           
-  geom_point(data = GS46638,
+  geom_point(data = GS46638,                                                         # add detections to plot
              aes(x = Lon, y = Lat),
              color = "red",
              size = 3.5) +

@@ -45,12 +45,12 @@ ggplot(dat) +
 
 
 
-# check the salvage report on the date that the GS disappears: 2016-10-15
-scrape_CDFW_salvage(2016, 10, 15)
+
 
 # download and save summary by tag ID -------------------------------------
 
-download.file(url = "http://cftc.metro.ucdavis.edu/biotelemetry-autonomous-real-time-database/memo/getVisitsCSV/A69-1303-12345,A69-1206-260,A69-1303-46638/2010-01-01%2000:00:00/2020-06-24%2010:46:01/", destfile = "data/tag12345_ect.csv")
+download.file(url = "http://cftc.metro.ucdavis.edu/biotelemetry-autonomous-real-time-database/memo/getVisitsCSV/A69-1303-12345,A69-1206-260,A69-1303-46638/2010-01-01%2000:00:00/2020-06-24%2010:46:01/", 
+              destfile = "data/tag12345_ect.csv")
 
 
 
