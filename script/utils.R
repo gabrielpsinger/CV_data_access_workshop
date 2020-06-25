@@ -98,9 +98,10 @@ rsn <- function(x){rowSums(is.na(x))}
 
 # scrape CDFW salvage site ------------------------------------------------
 
+library(curl)
 
 scrape_CDFW_salvage = function(year, month, day){
-url <- paste0("https://apps.wildlife.ca.gov/Salvage/Project/DailySummary?EndDate=Sat%20", tolower(month.abb[month]), "%20", day, "%20", year, "&sortOrder=")
+url <- paste0("https://apps.wildlife.ca.gov/Salvage/Project/DailySummary?EndDate=", weekdays(as.Date(paste(year, month, day, sep = "-")), abbreviate = T), "%20", tolower(month.abb[month]), "%20", day, "%20", year, "&sortOrder=")
 html <- read_html(url)
 salvage <- html_nodes(html, "td")
 
@@ -114,7 +115,7 @@ acre_ft = acre_ft[-1, ]
 
 
 
-species <- as.data.frame(matrix(text[7:30], ncol= 3, byrow = T))
+species <- as.data.frame(matrix(text[7:length(text)], ncol= 3, byrow = T))
 colnames(species) <- as.character(unlist(species[1,]))
 species = species[-1, ]
 
@@ -124,7 +125,7 @@ return(sal_list)
 
 }
 
-scrape_CDFW_salvage(2016, 10, 15)
+scrape_CDFW_salvage(2019, 10, 15)
 
 # old plotting code -------------------------------------------------------
 
