@@ -7,8 +7,8 @@
 source("script/utils.R")
 check_and_install_packages()
 
-
-
+# run if we haven't already created a 'data' directory
+dir.create("data", showWarnings = F)
 
 
 # direct download by receiver and time ------------------------------------
