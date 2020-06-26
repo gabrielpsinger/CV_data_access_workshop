@@ -9,6 +9,6 @@
     + Copy and paste this URL: https://github.com/gabrielpsinger/CV_data_access_workshop
 4. Click the drop-down arrow in the upper right hand corner next to 'R 4.0.0'
 5. Select __'R 3.6.3'__
-6. Click on the 'script' folder in the files pane (lower left)
+6. Click on the 'script' folder in the files pane (lower right)
 7. Open the 'animation_code.R'script
   
