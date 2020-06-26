@@ -20,7 +20,10 @@ check_and_install_packages = function() {
                         "gifski", 
                         "fishualize", 
                         "scales", 
-                        "rvest")
+                        "rvest", 
+                        "rerddap", 
+                        "mapdata", 
+                        "ggrepel")
  
 
 
