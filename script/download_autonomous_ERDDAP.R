@@ -7,9 +7,9 @@
 ###########################################################################
 
 # set up ------------------------------------------------------------------
-
-source("script/utils.R")
-check_and_install_packages()
+# Only run the following lines, if starting with this script file. Otherwise, the set up is already complete
+# source("script/utils.R")
+# check_and_install_packages()
 
 
 ## install and load the 'rerddap' library
